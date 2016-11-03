@@ -4,12 +4,12 @@ use ieee.numeric_std.all;
 
 entity proto_uc is
 	port(
-		data_in	: in unsigned(6 downto 0);
-		data_out: out unsigned(6 downto 0)
+		data_in	: in unsigned(16 downto 0);
+		data_out: out unsigned(16 downto 0)
 	);
 end entity;
 
 architecture a_proto_uc of proto_uc is
 	begin
-	data_out <= data_in + "0000001";
+	data_out <= data_in + "00000000000000001";
 end architecture;

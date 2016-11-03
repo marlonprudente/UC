@@ -10,14 +10,14 @@ end entity;
 
 architecture a_uc of uc is
 
-	signal data_in_pc,data_out_pc: unsigned(6 downto 0);
+	signal data_in_pc,data_out_pc: unsigned(16 downto 0);
 	signal estado, wr_en_pc, jump_en:	std_logic;
 	signal instruction: unsigned(16 downto 0);
 	signal opcode: unsigned(2 downto 0);
 
 	component rom is
 		port ( 	clk		 : in std_logic;
-				endereco : in unsigned(6 downto 0);
+				endereco : in unsigned(16 downto 0);
 				dado     : out unsigned(16 downto 0)
 			);
 	end component;
@@ -25,16 +25,16 @@ architecture a_uc of uc is
 	component pc is
 		port( 	clk:		in std_logic;
 				rst:		in std_logic;
-				wr_en:	in std_logic;
-				data_in:	in unsigned(6 downto 0);
-				data_out:	out unsigned(6 downto 0)
+				wr_en:		in std_logic;
+				data_in:	in unsigned(16 downto 0);
+				data_out:	out unsigned(16 downto 0)
 	);
 	end component;
 	
 	component proto_uc is
 		port(
-		data_in	: in unsigned(6 downto 0);
-		data_out: out unsigned(6 downto 0)
+		data_in	: in unsigned(16 downto 0);
+		data_out: out unsigned(16 downto 0)
 	);
 	end component;
 	
@@ -48,30 +48,34 @@ architecture a_uc of uc is
 	begin
 
 	pc0 : pc port map (
-			clk      => clk_pc,
+			clk      => clk,
 			rst      => rst,
 			wr_en    => wr_en_pc,
-			data_in  => pc_in,
-			data_out => pc_out
+			data_in  => data_in_pc,
+			data_out => data_out_pc
 			);
 	rom0 : rom port map (
-			clk      => clk_rom,
-			endereco => endereco,
-			dado     => rom_o
+			clk      => clk,
+			endereco => data_out_pc,
+			dado     => instruction
 			);
 
 	me0 : maquina_estados port map (
-					clk      => clk,
-					rst      => rst,
-					estado => estado
+					clk     => clk,
+					rst     => rst,
+					estado 	=> estado
 					);
+	data_in_pc <= 	data_out_pc + 1 when wr_en_pc = '1' and jump_en = '0' else
+		instruction(16 downto 0) when wr_en_pc = '1' and jump_en = '1'
+		else "00000000000000000";
 
-	opcode <= instruction(16 downto 13);
+	wr_en_pc <= '1' when estado = '1' else '0' when estado = '0' else '0';
+
+	opcode <= instruction(16 downto 14);
 	
 		-- nop : 0000
 		-- jump : 1111
 		
-		jump_end <= instruction(6 downto 0) when opcode = "1111" else
-					  1 + data_in_pc;
+	jump_en <= '1' when opcode = "111" else '0';
 
 end architecture;
