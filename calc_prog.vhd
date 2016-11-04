@@ -6,8 +6,8 @@ entity calc_prog is
 	port(	clk,rst	: 	in std_logic;
 			pc 		: 	out unsigned(16 downto 0);
 			rom_out :	out unsigned(16 downto 0);
-			regis1 	:	out unsigned(16 downto 0);
-			regis2 	:	out unsigned(16 downto 0);
+			regis1 	:	out unsigned(3 downto 0);
+			regis2 	:	out unsigned(3 downto 0);
 			ula_out :	out unsigned(16 downto 0);
 			estado	: 	out unsigned(1 downto 0)
 		);
@@ -15,12 +15,14 @@ end entity;
 
 architecture a_calc_prog of calc_prog is
 
-	signal clk,rst : in std_logic;
-	signal rom_out : out unsigned(16 downto 0);
+	signal clk,rst,wr_en : in std_logic;
+	signal rom_out, ula_out, readdata1, readdata2 : out unsigned(16 downto 0);
+	signal regis1,regis2 : in unsigned(2 downto 0);
+	signal estado : out unsigned(1 downto 0);
 
 	component rom is
 		port ( 	clk		 : in std_logic;
-				endereco : in unsigned(16 downto 0);
+				endereco : in unsigned(7 downto 0);
 				dado     : out unsigned(16 downto 0)
 			);
 	end component;
@@ -76,6 +78,7 @@ architecture a_calc_prog of calc_prog is
 		);
 	end component;
 
+
 	begin
 
 	uc0	: 	uc port map(
@@ -108,8 +111,8 @@ architecture a_calc_prog of calc_prog is
 		);
 
 	br0 : 	bancoreg16bits port map(
-		readreg1 => readreg1;
-		readreg2 => readreg2;
+		readreg1 => regis1;
+		readreg2 => regis2;
 		wr_en => wr_en;
 		clk => clk;
 		rst => rst;

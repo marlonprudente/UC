@@ -8,12 +8,12 @@ end entity;
 architecture a_uc_tb of uc_tb is
 	component uc
 	port(clk, rst, wr_en: in std_logic;
-			dado		: out unsigned(16 downto 0)
+			dado		: out unsigned(7 downto 0)
 	);
 	end component;
 	
 	signal clk, rst, wr_en: std_logic;
-	signal dado: unsigned(16 downto 0);
+	signal dado: unsigned(7 downto 0);
 	
 begin
 	uut: uc port map(clk=>clk, rst=>rst, wr_en=>wr_en, dado=>dado);

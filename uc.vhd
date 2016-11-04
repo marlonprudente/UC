@@ -4,21 +4,29 @@ use ieee.numeric_std.all;
 
 entity uc is
 	port(clk, rst, wr_en: in std_logic;
-			dado		: out unsigned(16 downto 0)
+			dado		: out unsigned(7 downto 0)
 	);
 end entity;
 
 architecture a_uc of uc is
 
-	signal data_in_pc,data_out_pc: unsigned(16 downto 0);
+	signal data_in_pc,data_out_pc: unsigned(7 downto 0);
+	signal endereco :  unsigned(7 downto 0);
 	signal estado, wr_en_pc, jump_en:	std_logic;
 	signal instruction: unsigned(16 downto 0);
 	signal opcode: unsigned(2 downto 0);
 
 	component rom is
 		port ( 	clk		 : in std_logic;
-				endereco : in unsigned(16 downto 0);
+				endereco : in unsigned(7 downto 0);
 				dado     : out unsigned(16 downto 0)
+			);
+	end component;
+
+	component proto_uc is
+		port(
+			data_in : in unsigned(7 downto 0);
+			data_out : out unsigned (7 downto 0)
 			);
 	end component;
 	
@@ -26,15 +34,8 @@ architecture a_uc of uc is
 		port( 	clk:		in std_logic;
 				rst:		in std_logic;
 				wr_en:		in std_logic;
-				data_in:	in unsigned(16 downto 0);
-				data_out:	out unsigned(16 downto 0)
-	);
-	end component;
-	
-	component proto_uc is
-		port(
-		data_in	: in unsigned(16 downto 0);
-		data_out: out unsigned(16 downto 0)
+				data_in:	in unsigned(7 downto 0);
+				data_out:	out unsigned(7 downto 0)
 	);
 	end component;
 	
@@ -46,6 +47,11 @@ architecture a_uc of uc is
 	end component;
 	
 	begin
+
+	proto_uc0 : proto_uc port map(
+				data_in => data_out_pc,
+				data_out => data_in_pc
+		);
 
 	pc0 : pc port map (
 			clk      => clk,
@@ -68,8 +74,8 @@ architecture a_uc of uc is
 					);
 
 	data_in_pc <= 	data_out_pc + 1 when wr_en_pc = '1' and jump_en = '0' else
-		instruction(16 downto 0) when wr_en_pc = '1' and jump_en = '1'
-		else "00000000000000000";
+		endereco(7 downto 0) when wr_en_pc = '1' and jump_en = '1'
+		else "00000000";
 
 	wr_en_pc <= '1' when estado = '1' else '0' when estado = '0' else '0';
 

@@ -6,16 +6,16 @@ use ieee.numeric_std.all;
 entity rom_tb is
 end entity;
 
-architecture arom_tb of rom_tb is
+architecture a_rom_tb of rom_tb is
 	component rom is
 		port ( clk		: in std_logic;
-			   endereco : in unsigned(16 downto 0);
+			   endereco : in unsigned(7 downto 0);
 			   dado		: out unsigned(16 downto 0)
 		);
 	end component;
 	
-	signal clk,wr_en 	: std_logic;
-	signal endereco : unsigned(16 downto 0);
+	signal clk 	: std_logic;
+	signal endereco : unsigned(7 downto 0);
 	signal dado		: unsigned(16 downto 0);
 	 
 	begin
@@ -35,27 +35,27 @@ architecture arom_tb of rom_tb is
 		
 	process
 		begin
-			endereco<="00000000000000000";
+			endereco<="00000000";
 			wait for 100 ns;
-			endereco<="00000000000000001";
+			endereco<="00000001";
 			wait for 100 ns;
-			endereco<="00000000000000010";
+			endereco<="00000010";
 			wait for 100 ns;
-			endereco<="00000000000000011";
+			endereco<="00000011";
 			wait for 100 ns;
-			endereco<="00000000000000100";
+			endereco<="00000100";
 			wait for 100 ns;
-			endereco<="00000000000000101";
+			endereco<="00000101";
 			wait for 100 ns;
-			endereco<="00000000000000110";
+			endereco<="00000110";
 			wait for 100 ns;
-			endereco<="00000000000000111";
+			endereco<="00000111";
 			wait for 100 ns;
-			endereco<="00000000000001000";
+			endereco<="00001000";
 			wait for 100 ns;
-			endereco<="00000000000001001";
+			endereco<="00001001";
 			wait for 100 ns;
-			endereco<="00000000000001010";
+			endereco<="00001010";
 			wait for 100 ns;
 						
 	end process;

@@ -10,13 +10,13 @@ architecture a_pc_tb of pc_tb is
 		port( 	clk:		in std_logic;
 				rst:		in std_logic;
 				wr_en:	in std_logic;
-				data_in:	in unsigned(16 downto 0);
-				data_out:	out unsigned(16 downto 0)
+				data_in:	in unsigned(7 downto 0);
+				data_out:	out unsigned(7 downto 0)
 	);
 	end component;
 	
 	signal clk, rst, wr_en: std_logic;
-	signal data_in, data_out: unsigned(16 downto 0);
+	signal data_in, data_out: unsigned(7 downto 0);
 	
 begin
 	uut: pc port map(clk=>clk, rst=>rst, wr_en=>wr_en, data_in=>data_in, data_out=>data_out);
@@ -42,19 +42,19 @@ begin
 		wr_en <= '0';
 		wait for 50 ns;
 		wr_en <= '1';
-		data_in <= "00000000000000000";
+		data_in <= "00000000";
 		wait for 50 ns;
-		data_in <= "00000000000000010";
+		data_in <= "00000010";
 		wait for 50 ns;
-		data_in <= "00000000000001000";
+		data_in <= "00001000";
 		wait for 50 ns;
-		data_in <= "00000000000111100";
+		data_in <= "00111100";
 		wait for 50 ns;
-		data_in <= "00000110101011101";
+		data_in <= "01011101";
 		wait for 50 ns;
-		data_in <= "01111111111100000";
+		data_in <= "11100000";
 		wait for 50 ns;
-		data_in <= "01111111000000000";
+		data_in <= "00000110";
 		wait;
 	end process;
 end architecture;
