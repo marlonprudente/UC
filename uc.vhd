@@ -11,7 +11,8 @@ end entity;
 architecture a_uc of uc is
 
 	signal data_in_pc,data_out_pc: unsigned(7 downto 0);
-	signal endereco :  unsigned(7 downto 0);
+	signal data_out_proto: unsigned(7 downto 0);
+	--signal endereco :  unsigned(7 downto 0);
 	signal estado, wr_en_pc, jump_en:	std_logic;
 	signal instruction: unsigned(16 downto 0);
 	signal opcode: unsigned(2 downto 0);
@@ -50,7 +51,7 @@ architecture a_uc of uc is
 
 	proto_uc0 : proto_uc port map(
 				data_in => data_out_pc,
-				data_out => data_in_pc
+				data_out => data_out_proto
 		);
 
 	pc0 : pc port map (
@@ -73,8 +74,10 @@ architecture a_uc of uc is
 					estado 	=> estado
 					);
 
-	data_in_pc <= 	data_out_pc + 1 when wr_en_pc = '1' and jump_en = '0' else
-		endereco(7 downto 0) when wr_en_pc = '1' and jump_en = '1'
+
+	--endereco <= data_out_pc;
+	data_in_pc <= 	data_out_proto  when wr_en_pc = '1' and jump_en = '0' else
+		instruction(7 downto 0) when wr_en_pc = '1' and jump_en = '1'
 		else "00000000";
 
 	wr_en_pc <= '1' when estado = '1' else '0' when estado = '0' else '0';
@@ -83,8 +86,7 @@ architecture a_uc of uc is
 	
 		-- nop : 0000
 		-- jump : 1111
-		
 	jump_en <= '1' when opcode = "111" else '0';
-
 	dado <= data_out_pc;
+
 end architecture;

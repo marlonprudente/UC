@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity calc_prog is
 	port(	clk,rst	: 	in std_logic;
-			pc 		: 	out unsigned(16 downto 0);
+			pc 		: 	out unsigned(7 downto 0);
 			rom_out :	out unsigned(16 downto 0);
 			regis1 	:	out unsigned(3 downto 0);
 			regis2 	:	out unsigned(3 downto 0);
@@ -17,6 +17,7 @@ architecture a_calc_prog of calc_prog is
 
 	signal clk,rst,wr_en : in std_logic;
 	signal rom_out, ula_out, readdata1, readdata2 : out unsigned(16 downto 0);
+	signal pc : out unsigned(7 downto 0);
 	signal regis1,regis2 : in unsigned(2 downto 0);
 	signal estado : out unsigned(1 downto 0);
 
