@@ -1,31 +1,31 @@
 v 4
-file . "uc.vhd" "d6f416f58d94670177306ca94572c612a3708702" "20161103212652.123":
-  entity uc at 1( 0) + 0 on 217;
-  architecture a_uc of uc at 11( 184) + 0 on 218;
-file . "proto_uc.vhd" "a69b80b7828652f2c311b6f1504ca1185c208227" "20161103212651.824":
-  entity proto_uc at 1( 0) + 0 on 213;
-  architecture a_proto_uc of proto_uc at 12( 200) + 0 on 214;
-file . "pc.vhd" "5c85987c7ee5984f1856839525d5701de6291bcc" "20161103212651.502":
-  entity pc at 1( 0) + 0 on 209;
-  architecture a_pc of pc at 14( 265) + 0 on 210;
-file . "rom.vhd" "237f185d7757ad9d97d1707d0daddc65705e93c1" "20161103212651.185":
-  entity rom at 1( 0) + 0 on 205;
-  architecture a_rom of rom at 13( 217) + 0 on 206;
-file . "maquina_estados.vhd" "3a81f2d1444de6cf167aea9f8e4775c2fca4d41e" "20161103212650.867":
-  entity maquina_estados at 1( 0) + 0 on 201;
-  architecture a_maquina_estados of maquina_estados at 12( 204) + 0 on 202;
-file . "maquina_estados_tb.vhd" "6e57930ff11cc0187b63396aa8e81cfd44d0f463" "20161103212651.040":
-  entity maquina_estados_tb at 1( 0) + 0 on 203;
-  architecture a_maquina_estados_tb of maquina_estados_tb at 8( 119) + 0 on 204;
-file . "rom_tb.vhd" "3b5b50fe9c1f86c4f3bcda47391890672e7846f7" "20161103212651.334":
-  entity rom_tb at 2( 2) + 0 on 207;
-  architecture arom_tb of rom_tb at 9( 109) + 0 on 208;
-file . "pc_tb.vhd" "fa2292dd9fd2a7456ec85a75cbb53ad61124a9b5" "20161103212651.656":
-  entity pc_tb at 1( 0) + 0 on 211;
-  architecture a_pc_tb of pc_tb at 8( 106) + 0 on 212;
-file . "proto_uc_tb.vhd" "de6cad716bcb5fc938a93032a51e32f4f03c8481" "20161103212651.969":
-  entity proto_uc_tb at 1( 0) + 0 on 215;
-  architecture a_proto_uc_tb of proto_uc_tb at 8( 105) + 0 on 216;
-file . "uc_tb.vhd" "d7efbbf7c3fd447238b689e02e3843ff29b14d4e" "20161103212652.301":
-  entity uc_tb at 1( 0) + 0 on 219;
-  architecture a_uc_tb of uc_tb at 8( 106) + 0 on 220;
+file . "uc.vhd" "46a6b5f1748334a34bf74a7a94e946eff9e909bc" "20161103215453.672":
+  entity uc at 1( 0) + 0 on 237;
+  architecture a_uc of uc at 11( 184) + 0 on 238;
+file . "proto_uc.vhd" "a69b80b7828652f2c311b6f1504ca1185c208227" "20161103215453.363":
+  entity proto_uc at 1( 0) + 0 on 233;
+  architecture a_proto_uc of proto_uc at 12( 200) + 0 on 234;
+file . "pc.vhd" "5c85987c7ee5984f1856839525d5701de6291bcc" "20161103215453.042":
+  entity pc at 1( 0) + 0 on 229;
+  architecture a_pc of pc at 14( 265) + 0 on 230;
+file . "rom.vhd" "237f185d7757ad9d97d1707d0daddc65705e93c1" "20161103215452.739":
+  entity rom at 1( 0) + 0 on 225;
+  architecture a_rom of rom at 13( 217) + 0 on 226;
+file . "maquina_estados.vhd" "3a81f2d1444de6cf167aea9f8e4775c2fca4d41e" "20161103215452.437":
+  entity maquina_estados at 1( 0) + 0 on 221;
+  architecture a_maquina_estados of maquina_estados at 12( 204) + 0 on 222;
+file . "maquina_estados_tb.vhd" "6e57930ff11cc0187b63396aa8e81cfd44d0f463" "20161103215452.592":
+  entity maquina_estados_tb at 1( 0) + 0 on 223;
+  architecture a_maquina_estados_tb of maquina_estados_tb at 8( 119) + 0 on 224;
+file . "rom_tb.vhd" "3b5b50fe9c1f86c4f3bcda47391890672e7846f7" "20161103215452.880":
+  entity rom_tb at 2( 2) + 0 on 227;
+  architecture arom_tb of rom_tb at 9( 109) + 0 on 228;
+file . "pc_tb.vhd" "fa2292dd9fd2a7456ec85a75cbb53ad61124a9b5" "20161103215453.199":
+  entity pc_tb at 1( 0) + 0 on 231;
+  architecture a_pc_tb of pc_tb at 8( 106) + 0 on 232;
+file . "proto_uc_tb.vhd" "de6cad716bcb5fc938a93032a51e32f4f03c8481" "20161103215453.517":
+  entity proto_uc_tb at 1( 0) + 0 on 235;
+  architecture a_proto_uc_tb of proto_uc_tb at 8( 105) + 0 on 236;
+file . "uc_tb.vhd" "d7efbbf7c3fd447238b689e02e3843ff29b14d4e" "20161103215453.856":
+  entity uc_tb at 1( 0) + 0 on 239;
+  architecture a_uc_tb of uc_tb at 8( 106) + 0 on 240;

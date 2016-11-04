@@ -54,6 +54,7 @@ architecture a_uc of uc is
 			data_in  => data_in_pc,
 			data_out => data_out_pc
 			);
+	
 	rom0 : rom port map (
 			clk      => clk,
 			endereco => data_out_pc,
@@ -65,6 +66,7 @@ architecture a_uc of uc is
 					rst     => rst,
 					estado 	=> estado
 					);
+
 	data_in_pc <= 	data_out_pc + 1 when wr_en_pc = '1' and jump_en = '0' else
 		instruction(16 downto 0) when wr_en_pc = '1' and jump_en = '1'
 		else "00000000000000000";
@@ -78,4 +80,5 @@ architecture a_uc of uc is
 		
 	jump_en <= '1' when opcode = "111" else '0';
 
+	dado <= data_out_pc;
 end architecture;
